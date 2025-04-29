@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% load socialaccount %}
+
+{% block title %}Video Game Rentals{% endblock %}
+
+{% block content %}
+<main class="container mt-5 fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-center mb-5">
+                <h1 class="display-7 fw-bold">Welcome to Game Rentals</h1>
+                <p class="lead text-muted">Your ultimate destination for video game rentals</p>
+                <div class="d-flex justify-content-center">
+                    <div class="border-bottom border-3 w-25 mt-2" style="border-color: var(--primary-color) !important;"></div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-body p-4">
+                    {% if user.is_authenticated %}
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-gradient rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">Account Status</h5>
+                            <p class="text-muted mb-0">Currently logged in as: <strong>{{ username }}</strong>
+                            {% if profileimage %}
+                                <img src="{{profileimage.url}}" width="30" height="30" class="rounded-circle ms-2" alt={{username}}>
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <hr>
+
+                    {% if user.userprofile.role == "Librarian" %}
+                        <div class="alert alert-primary d-flex align-items-center" role="alert">
+                            <i class="fas fa-crown me-2 fs-4"></i>
+                            <div>
+                                Welcome, <strong>Librarian</strong>! You have administrative privileges.
+                            </div>
+                        </div>
+                    {% elif user.userprofile.role == "Patron" %}
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <i class="fas fa-check-circle me-2 fs-4"></i>
+                            <div>
+                                Welcome, <strong>Patron</strong>! You have full access to rentals.
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info d-flex align-items-center" role="alert">
+                            <i class="fas fa-info-circle me-2 fs-4"></i>
+                            <div>
+                                You are currently browsing as a <strong>Guest</strong>. Try utilizing the Google login button at the top right for full access.
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

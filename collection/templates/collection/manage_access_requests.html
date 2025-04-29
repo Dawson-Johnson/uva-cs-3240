@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Access Requests - Video Game Rentals{% endblock %}
+
+{% block content %}
+<main class="container mt-5 fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-user-shield text-primary me-3 fs-3"></i>
+                <h1 class="display-7 fw-bold mb-0">Manage Access Requests</h1>
+            </div>
+            <p class="lead text-muted mb-4">Review and manage collection access requests</p>
+            <div class="d-flex justify-content-start mb-4">
+                <div class="border-bottom border-3 w-25" style="border-color: var(--primary-color) !important;"></div>
+            </div>
+
+            {% if pending_requests %}
+                <div class="card shadow mb-4">
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Collection</th>
+                                        <th>Requester</th>
+                                        <th>Request Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for request in pending_requests %}
+                                        <tr>
+                                            <td>{{ request.collection.name }}</td>
+                                            <td>{{ request.requester.username }}</td>
+                                            <td>{{ request.created_at|date:"F j, Y" }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{% url 'collection:approve_request' request.id %}" 
+                                                       class="btn btn-success btn-sm">
+                                                        <i class="fas fa-check me-1"></i> Approve
+                                                    </a>
+                                                    <a href="{% url 'collection:reject_request' request.id %}" 
+                                                       class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-times me-1"></i> Reject
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    There are no pending access requests.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %} 

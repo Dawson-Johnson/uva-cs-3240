@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% load socialaccount %}
+
+{% block title %}Wishlist - Video Game Rentals{% endblock %}
+
+{% block content %}
+<main class="container mt-5 fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-heart text-danger me-3 fs-3"></i>
+                <h1 class="display-7 fw-bold mb-0">Your Wishlist</h1>
+            </div>
+            <p class="lead text-muted mb-4">Games you've saved for future rentals</p>
+            <div class="d-flex justify-content-start mb-4">
+                <div class="border-bottom border-3 w-25" style="border-color: var(--primary-color) !important;"></div>
+            </div>
+
+            <div class="card shadow mb-5">
+                <div class="card-body p-0">
+                    {% if user.is_authenticated %}
+                        <div class="list-group list-group-flush">
+                            <div class="game-card d-flex align-items-center p-3">
+                                <img src="https://placehold.co/80x80/6c5ce7/ffffff?text=BOTW" class="game-img" alt="Game Cover">
+                                <div class="game-details ms-3">
+                                    <h5 class="game-title mb-1">The Legend of Zelda: Breath of the Wild</h5>
+                                    <p class="game-platform mb-1"><i class="fas fa-gamepad me-1"></i> Nintendo Switch</p>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="badge bg-success me-2">Available</span>
+                                        <small class="text-muted">Added on: June 15, 2023</small>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <a href="#" class="btn btn-sm btn-primary me-2">
+                                        <i class="fas fa-shopping-cart me-1"></i> Rent
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="game-card d-flex align-items-center p-3">
+                                <img src="https://placehold.co/80x80/fd79a8/ffffff?text=Elden" class="game-img" alt="Game Cover">
+                                <div class="game-details ms-3">
+                                    <h5 class="game-title mb-1">Elden Ring</h5>
+                                    <p class="game-platform mb-1"><i class="fas fa-gamepad me-1"></i> PlayStation 5</p>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="badge bg-success me-2">Available</span>
+                                        <small class="text-muted">Added on: June 18, 2023</small>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <a href="#" class="btn btn-sm btn-primary me-2">
+                                        <i class="fas fa-shopping-cart me-1"></i> Rent
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="game-card d-flex align-items-center p-3">
+                                <img src="https://placehold.co/80x80/00b894/ffffff?text=GOW" class="game-img" alt="Game Cover">
+                                <div class="game-details ms-3">
+                                    <h5 class="game-title mb-1">God of War: Ragnarok</h5>
+                                    <p class="game-platform mb-1"><i class="fas fa-gamepad me-1"></i> PlayStation 5</p>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="badge bg-warning me-2">Waitlisted</span>
+                                        <small class="text-muted">Added on: June 20, 2023</small>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <a href="#" class="btn btn-sm btn-secondary me-2 disabled">
+                                        <i class="fas fa-clock me-1"></i> Waitlisted
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="game-card d-flex align-items-center p-3">
+                                <img src="https://placehold.co/80x80/e17055/ffffff?text=RDR2" class="game-img" alt="Game Cover">
+                                <div class="game-details ms-3">
+                                    <h5 class="game-title mb-1">Red Dead Redemption 2</h5>
+                                    <p class="game-platform mb-1"><i class="fas fa-gamepad me-1"></i> Xbox Series X</p>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="badge bg-success me-2">Available</span>
+                                        <small class="text-muted">Added on: June 25, 2023</small>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <a href="#" class="btn btn-sm btn-primary me-2">
+                                        <i class="fas fa-shopping-cart me-1"></i> Rent
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="game-card d-flex align-items-center p-3">
+                                <img src="https://placehold.co/80x80/74b9ff/ffffff?text=FF7" class="game-img" alt="Game Cover">
+                                <div class="game-details ms-3">
+                                    <h5 class="game-title mb-1">Final Fantasy VII Remake</h5>
+                                    <p class="game-platform mb-1"><i class="fas fa-gamepad me-1"></i> PlayStation 5</p>
+                                    <div class="d-flex align-items-center mt-2">
+                                        <span class="badge bg-secondary me-2">Rented</span>
+                                        <small class="text-muted">Added on: June 30, 2023</small>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <a href="#" class="btn btn-sm btn-secondary me-2 disabled">
+                                        <i class="fas fa-ban me-1"></i> Unavailable
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer bg-light p-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted">5 games in wishlist</span>
+                            </div>
+                            <div>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-sync-alt me-1"></i> Refresh Availability
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="text-center p-5">
+                            <div class="mb-4">
+                                <i class="fas fa-heart-broken text-muted fa-5x"></i>
+                            </div>
+                            <h5 class="mb-3">Your wishlist is empty</h5>
+                            <p class="text-muted mb-4">Sign in to save games to your wishlist</p>
+                            <a href="{% provider_login_url 'google' %}" class="btn btn-primary">
+                                <i class="fab fa-google me-1"></i> Login with Google
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
